@@ -6,6 +6,35 @@ describe('TodoAPI', () => {
         expect(TodoAPI).toExist()
     })
 
+    describe('filterTodos', () => {
+
+        var todos = [{
+            id: 1,
+            text: 'test 1',
+            completed: true
+        },{
+            id: 2,
+            text: 'test 2',
+            completed: false
+        },{
+            id: 3,
+            text: 'test 3',
+            completed: true
+        }]
+        
+        it('should show all items if showCompleted is true', () => {
+            var filteredTodos = TodoAPI.filterTodos(todos, true, '')
+
+            expect(filteredTodos.length).toEqual(3)
+        })
+        
+        it('should show only incompleted items if showCompleted is false', () => {
+            var filteredTodos = TodoAPI.filterTodos(todos, false, '')
+
+            expect(filteredTodos.length).toEqual(1)
+        })
+    })
+
     describe('getTodos', () => {
         
         it('should return empty array for bad local storage data', () => {
