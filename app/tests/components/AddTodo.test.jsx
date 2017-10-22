@@ -5,25 +5,44 @@ var TestUtils = require('react-addons-test-utils')
 var expect = require('expect')
 var $ = require('jquery')
 
-var AddTodo = require('AddTodo')
+var { AddTodo } = require('AddTodo')
 
 describe('AddTodo', () => {
     it('should exist', () => {
         expect(AddTodo).toExist()
     })
 
-    it('should call onAddToDo prop with valid data', () => {
+    it('should dispath ADD_TODO when valid data', () => {
+        var testText = 'Check mail'
+        var action = {
+            type: 'ADD_TODO',
+            text: testText
+        }
         var spy = expect.createSpy()
-
-        var addTodo = TestUtils.renderIntoDocument(<AddTodo onAddTodo={spy} />)
-
+        var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />)
         var $el = $(ReactDOM.findDOMNode(addTodo))
 
-        var testText = 'Check mail'
-
+        
         addTodo.refs.todoText.value = testText
         TestUtils.Simulate.submit($el.find('form')[0])
 
-        expect(spy).toHaveBeenCalledWith(testText)
+        expect(spy).toHaveBeenCalledWith(action)
+    })
+
+    it('should not dispath ADD_TODO when invalid data', () => {
+        var testText = ''
+        var action = {
+            type: 'ADD_TODO',
+            text: testText
+        }
+        var spy = expect.createSpy()
+        var addTodo = TestUtils.renderIntoDocument(<AddTodo dispatch={spy} />)
+        var $el = $(ReactDOM.findDOMNode(addTodo))
+
+        
+        addTodo.refs.todoText.value = testText
+        TestUtils.Simulate.submit($el.find('form')[0])
+
+        expect(spy).toNotHaveBeenCalled()
     })
 })
