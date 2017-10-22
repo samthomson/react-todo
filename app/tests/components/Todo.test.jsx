@@ -4,6 +4,7 @@ var TestUtils = require('react-addons-test-utils')
 var expect = require('expect')
 var $ = require('jquery')
 
+import * as actions from 'actions'
 var { Todo } = require('Todo')
 
 describe('Todo', () => {
@@ -17,6 +18,7 @@ describe('Todo', () => {
             text: 'test features',
             completed: true
         }
+        var action = actions.startToggleTodo(todoData.id, !todoData.completed)
 
         let spy = expect.createSpy()
         
@@ -26,9 +28,6 @@ describe('Todo', () => {
 
         TestUtils.Simulate.click($el[0])
 
-        expect(spy).toHaveBeenCalledWith({
-            type: 'TOGGLE_TODO',
-            id: todoData.id
-        })
+        expect(spy).toHaveBeenCalledWith(action)
     })
 })
