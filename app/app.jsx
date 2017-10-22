@@ -12,10 +12,6 @@ store.subscribe(() => {
   console.log('New state', store.getState())
 })
 
-store.dispatch(actions.addTodo('get dinner'))
-store.dispatch(actions.setSearchText('add a todo'))
-store.dispatch(actions.toggleShowCompleted())
-
 // Load foundation
 $(document).foundation();
 

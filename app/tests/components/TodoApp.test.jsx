@@ -6,15 +6,15 @@ var expect = require('expect')
 var $ = require('jquery')
 
 var configureStore = require('configureStore')
-import TodoList from 'TodoList'
 var TodoApp = require('TodoApp')
+import TodoList from 'TodoList'
 
 describe('TodoApp', () => {
     it('should exist', () => {
         expect(TodoApp).toExist()
     })
 
-    it('should render todo list', () => {
+    it('should render TodoList', () => {
         var store = configureStore.configure()
         var provider = TestUtils.renderIntoDocument(
             <Provider store={store}>

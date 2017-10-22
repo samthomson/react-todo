@@ -45,7 +45,7 @@ describe('reducers', () => {
                 {
                     id: 11,
                     text: 'test features',
-                    completed: false,
+                    completed: true,
                     createdAt: 2433432,
                     completedAt: undefined
                 }
@@ -56,7 +56,7 @@ describe('reducers', () => {
             }
             var res = reducers.todosReducer(df(todos), df(action))
 
-            expect(res[0].completed).toEqual(true)
+            expect(res[0].completed).toEqual(false)
             expect(res[0].completedAt).toEqual(undefined)
         })
     })

@@ -35,7 +35,7 @@ module.exports = {
         try{
             todos = JSON.parse(localStorage.getItem('todos'))
         } catch (e) {
-
+            console.log(e)
         }
          
         return $.isArray(todos) ? todos : []

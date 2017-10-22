@@ -3,7 +3,7 @@ var { connect } = require('react-redux')
 var actions = require('actions')
 
 export var AddTodo = React.createClass({
-    onSubmit: function (e) {
+    handleSubmit: function (e) {
         e.preventDefault()
         var { dispatch } = this.props
         var strNewTodo = this.refs.todoText.value
@@ -19,7 +19,7 @@ export var AddTodo = React.createClass({
     render: function () {
         return (
             <div className="container__footer">
-                <form onSubmit={this.onSubmit}>
+                <form onSubmit={this.handleSubmit}>
                     <input type="text" ref="todoText" placeholder="enter new item.." />
                     <button className="button expanded">Add</button>
                 </form>
