@@ -1,4 +1,4 @@
-import firebase, { firebaseRef } from 'app/firebase/'
+import firebase, { firebaseRef, githubProvider } from 'app/firebase/'
 import moment from 'moment'
 var uuid = require('node-uuid')
 
@@ -86,6 +86,24 @@ export var startToggleTodo = (id, completed) => {
         }
         return todoRef.update(updates).then(() => {
             dispatch(updateTodo(id, updates))
+        })
+    }
+}
+
+export var startLogin = () => {
+    return (dispatch, getState) => {
+        firebase.auth().signInWithPopup(githubProvider).then((result) => {
+            console.log('Auth worked', result)
+        }, (e) => {
+            console.log('Auth failed', e)
+        })
+    }
+}
+
+export var startLogout = () => {
+    return (dispatch, getState) => {
+        return firebase.auth().signOut().then(() => {
+            console.log('Logged out')
         })
     }
 }
